@@ -8,5 +8,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('pgbench.frontend.views',
                        ('^$', 'home_view'),
-
 )
+
+
