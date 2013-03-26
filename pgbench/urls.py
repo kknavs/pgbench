@@ -1,17 +1,12 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
+from pgbench.frontend import views as frontend_views
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'pgbench.views.home', name='home'),
-    # url(r'^pgbench/', include('pgbench.foo.urls')),
+admin.autodiscover()
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+urlpatterns = patterns('pgbench.frontend.views',
+                       ('^$', 'home_view'),
 
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
 )

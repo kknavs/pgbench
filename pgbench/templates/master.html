@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title> {% block title %}{% endblock %} </title>
+
+    {% load static %}
+    <!-- CSS -->
+    <link type="text/css" rel="stylesheet" href="{% static "css/main.css" %}">
+    {% block css %}{% endblock %}
+
+    <!-- javascript -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
+    {% block javascript %}
+
+    {% endblock %}
+</head>
+
+<body>
+<div id="header">
+    {% include "components/header.html" %}
+    <hr>
+</div>
+
+<div id="content">
+{% block content %}{% endblock %}
+</div>
+
+<div id="footer">
+    <hr>
+    {% include "components/footer.html" %}
+</div>
+
+</body>
+</html>

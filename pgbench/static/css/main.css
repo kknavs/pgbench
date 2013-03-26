@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(100, 100, 100);
+    color: yellow;
+}
+
+#header {
+
+}
+
+#content {
+    height: 700px;
+    padding: 20px;
+}
+
+#footer {
+    text-align: center;
+}
+
+#header > img{
+    padding: 20px;
+    width: 8%;
+    height: 8%;
+}
+
+.title{
+    position: relative;
+    left: 30%;
+    bottom: 30px;
+}
+
+
