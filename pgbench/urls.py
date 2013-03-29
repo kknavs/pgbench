@@ -10,4 +10,5 @@ urlpatterns = patterns('pgbench.frontend.views',
                        (r'^$', 'home_view'),
                        ('^search/', TemplateView.as_view(template_name="search.html")),
                        ('^submit/', TemplateView.as_view(template_name="submit.html")),
+                       ('^analyze/', TemplateView.as_view(template_name="analyze.html")),
                        )
