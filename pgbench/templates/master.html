@@ -9,29 +9,38 @@
     <link type="text/css" rel="stylesheet" href="{% static "css/main.css" %}">
     {% block css %}{% endblock %}
 
-    <!-- javascript -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
-    {% block javascript %}
+    <!--[if lt IE 9]>
+    <script src="javascript/html5shiv.js"></script>
+    <![endif]-->
 
-    {% endblock %}
 </head>
 
 <body>
-<div id="header">
+<header id="header">
     {% include "components/header.html" %}
-</div>
+    <hr>
+</header>
+
+{% include "components/nav.html" %}
+
+
 
 <div id="content">
-<hr>
-{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </div>
 
-<div id="footer">
+<footer id="footer">
     <hr>
     {% include "components/footer.html" %}
-</div>
+</footer>
+
+<!-- javascript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
+{% block javascript %}
+
+{% endblock %}
 
 </body>
 </html>

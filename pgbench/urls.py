@@ -1,19 +1,22 @@
 from django.conf.urls import patterns, url
+from django.core import urlresolvers
+from django.views.generic import TemplateView
 from pgbench.frontend import views as frontend_views
 from pgbench.users import views as user_views
+from submitted_measurement import views as measure_views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns('pgbench.frontend.views',
-                       ('^$', 'home_view'),
+urlpatterns = patterns('',
+                       url(r'^$', frontend_views.HomeView.as_view(), name='home'),
+                       url('^search/$', TemplateView.as_view(template_name="search.html")),
+                       url('^submit/$', TemplateView.as_view(template_name="submit.html")),
+                       url('^analyze/$', TemplateView.as_view(template_name="analyze.html")),
+                       url('^register/$', user_views.RegisterView.as_view(template_name='users/register.html')),
+                       url('^login/$', user_views.LoginView.as_view(template_name='users/login.html')),
+                       (r'^logout/$', 'django.contrib.auth.views.logout',
+                        {'next_page': urlresolvers.reverse_lazy('home')})
 )
-
-urlpatterns += patterns('pgbench.users.views',
-                        url('^login$', user_views.RegisterView.as_view(), name='registration'),
-                        ('^register$', 'register'),
-)
-
-

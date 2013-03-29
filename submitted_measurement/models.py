@@ -9,7 +9,7 @@ class SubmittedMeasurement(models.Model):
     tags = []
 
     def __unicode__(self):
-        return str(self.id)
+        return unicode(self.id)
 
 
 class Choices(models.Model):
@@ -28,4 +28,3 @@ class Choices(models.Model):
     name = models.CharField(max_length=100)
     all_choices = models.PositiveSmallIntegerField(default=0, choices=ALL_CHOICES)
     user = models.CharField(max_length=100)
-
