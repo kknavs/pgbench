@@ -6,4 +6,15 @@ Login
 
 {% block content %}
     Please login.
+
+    <form method="post">
+        {% for field in form %}
+            <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field }}
+            </div>
+        {% endfor %}
+    <input type="submit" value="Login">
+    </form>
+
 {% endblock %}
