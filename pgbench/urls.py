@@ -1,5 +1,6 @@
-from django.conf.urls import patterns
-from django.views.generic import TemplateView
+from django.conf.urls import patterns, url
+from pgbench.frontend import views as frontend_views
+from pgbench.users import views as user_views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -7,10 +8,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('pgbench.frontend.views',
-                       (r'^$', 'home_view'),
-                       ('^search/', TemplateView.as_view(template_name="search.html")),
-                       ('^submit/', TemplateView.as_view(template_name="submit.html")),
-                       ('^analyze/', TemplateView.as_view(template_name="analyze.html")),
-                       )
+                       ('^$', 'home_view'),
+)
+
+urlpatterns += patterns('pgbench.users.views',
+                        url('^login$', user_views.RegisterView.as_view(), name='registration'),
+                        ('^register$', 'register'),
+)
 
 
