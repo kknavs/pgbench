@@ -9,7 +9,7 @@ class SubmittedMeasurement(models.Model):
     tags = []
 
     def __unicode__(self):
-        return str(self.id)
+        return unicode(self.id)
 
 
 class Choices(models.Model):
