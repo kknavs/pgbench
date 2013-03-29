@@ -10,4 +10,9 @@ urlpatterns = patterns('pgbench.frontend.views',
                        ('^$', 'home_view'),
 )
 
+urlpatterns += patterns('pgbench.users.views',
+                        ('^login$', 'login'),
+                        ('^register$', 'register'),
+)
+
 
