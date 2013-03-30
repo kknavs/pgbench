@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core import urlresolvers
 from django.views import generic as generic_views
 from pgbench.users import forms
+from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
 
@@ -21,12 +22,15 @@ class LoginView(generic_views.FormView):
         return super(LoginView, self).form_valid(form)
 
 
-def LogoutView(request):
-    logout(request)
+class LogoutView(generic_views.RedirectView):
+
+    def get(self, request, *args, **kwargs):
+        logout(self.request)
+        return redirect('/')
 
 
 class RegisterView(generic_views.FormView):
-    template_name = 'users/register.html'
+    template_name = 'register.html'
     form_class = forms.UserRegistationForm
     success_url = urlresolvers.reverse_lazy('home')
 
