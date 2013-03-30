@@ -1,6 +1,5 @@
 # Create your views here.
 
-from django.shortcuts import render_to_response
 from django.views import generic as generic_views
 
 

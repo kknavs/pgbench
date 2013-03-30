@@ -1,5 +1,4 @@
-from django.conf.urls import patterns, url
-from django.core import urlresolvers
+from django.conf.urls import patterns, url, include
 from django.views.generic import TemplateView
 from pgbench.frontend import views as frontend_views
 from pgbench.users import views as user_views
@@ -17,6 +16,6 @@ urlpatterns = patterns('',
                        url('^analyze/$', TemplateView.as_view(template_name="analyze.html")),
                        url('^register/$', user_views.RegisterView.as_view(template_name='users/register.html')),
                        url('^login/$', user_views.LoginView.as_view(template_name='users/login.html')),
-                       (r'^logout/$', 'django.contrib.auth.views.logout',
-                        {'next_page': urlresolvers.reverse_lazy('home')})
+                       url('^logout/$', user_views.LogoutView.as_view(), name='logout'),
+                       url(r'^admin/', include(admin.site.urls)),
 )
