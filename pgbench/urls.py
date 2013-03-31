@@ -17,5 +17,6 @@ urlpatterns = patterns('',
                        url('^register/$', user_views.RegisterView.as_view(template_name='users/register.html')),
                        url('^login/$', user_views.LoginView.as_view(template_name='users/login.html')),
                        url('^logout/$', user_views.LogoutView.as_view(), name='logout'),
+                       url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
                        url(r'^admin/', include(admin.site.urls)),
 )
