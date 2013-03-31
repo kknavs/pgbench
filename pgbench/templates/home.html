@@ -4,6 +4,13 @@
 
 {% block content %}
 
+    {% if user.is_authenticated %}
+
+        Hello, {% if user.is_staff %}super{% endif %}user.
+    {% else %}
+        Please register or login.
+    {% endif %}
+
     Here is content.
 
 {% endblock %}
