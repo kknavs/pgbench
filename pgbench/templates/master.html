@@ -13,6 +13,14 @@
     <script src="javascript/html5shiv.js"></script>
     <![endif]-->
 
+    <!-- javascript -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
+    {% block javascript %}
+
+    {% endblock %}
+
 </head>
 
 <body>
@@ -24,7 +32,6 @@
 {% include "components/nav.html" %}
 
 
-
 <div id="content">
     {% block content %}{% endblock %}
 </div>
@@ -34,13 +41,7 @@
     {% include "components/footer.html" %}
 </footer>
 
-<!-- javascript -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-<script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
-{% block javascript %}
-
-{% endblock %}
 
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django import forms
 
 
 class SubmittedMeasurement(models.Model):
@@ -10,6 +11,12 @@ class SubmittedMeasurement(models.Model):
 
     def __unicode__(self):
         return unicode(self.id)
+
+
+class SubmittedMeasurementForm(forms.ModelForm):
+    class Meta:
+        model = SubmittedMeasurement
+        # exclude = ('tags')
 
 
 class Choices(models.Model):
