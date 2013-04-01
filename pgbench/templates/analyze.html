@@ -5,5 +5,25 @@
 {% block content %}
 
     Analyze...
+    <br/><br/>
+
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>User</th>
+                <th>Date</th>
+            </tr>
+            {% for m in measures %}
+                <tr>
+                <td>{{ m.id }}</td>
+                <td>{{ m.title }}</td>
+                <td>{{ m.user }}</td>
+                <td>{{ m.date }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
 
 {% endblock %}
