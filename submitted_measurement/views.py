@@ -13,14 +13,14 @@ def contact(request):
             sm = SubmittedMeasurement(user=username, title=title, date=date)
             sm.save()
             return render(request, 'submit.html', {
-                'form': form,'confirm': True
+                'form': form, 'confirm': True
             })
     else:
         form = model_form()
 
     return render(request, 'submit.html', {
         'form': form,
-        })
+    })
 
 
 def get(request):
