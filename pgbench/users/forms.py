@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
 
-class UserRegistationForm(forms.Form):
+class UserRegistrationForm(forms.Form):
     username = forms.CharField(
         max_length=100,
         widget=forms.TextInput(attrs={'placeholder': 'Username'})
