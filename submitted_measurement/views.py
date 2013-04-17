@@ -4,13 +4,13 @@ from django.shortcuts import render
 
 def contact(request):
     model_form = SubmittedMeasurementForm
-    if request.method == 'POST':
+    if request.user.is_authenticated and request.method == 'POST':
         form = model_form(request.POST)
         if form.is_valid():
             title = form.cleaned_data['title']
-            username = form.cleaned_data['user']
             date = form.cleaned_data['date']
-            sm = SubmittedMeasurement(user=username, title=title, date=date)
+            tags = form.cleaned_data['tags']
+            sm = SubmittedMeasurement(user=request.user, title=title, date=date, tags=tags)
             sm.save()
             return render(request, 'submit.html', {
                 'form': form, 'confirm': True
@@ -24,5 +24,4 @@ def contact(request):
 
 
 def get(request):
-    sm = SubmittedMeasurement.objects.all()
-    return render(request, 'analyze.html', {'measures': sm})
+    return render(request, 'analyze.html', {'measures': SubmittedMeasurement.objects.all()})

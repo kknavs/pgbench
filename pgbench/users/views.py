@@ -31,7 +31,7 @@ class LogoutView(generic_views.RedirectView):
 
 class RegisterView(generic_views.FormView):
     template_name = 'register.html'
-    form_class = forms.UserRegistationForm
+    form_class = forms.UserRegistrationForm
     success_url = urlresolvers.reverse_lazy('home')
 
     def get(self, request, *args, **kwargs):

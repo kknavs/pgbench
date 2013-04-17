@@ -13,6 +13,7 @@
                 <th>Title</th>
                 <th>User</th>
                 <th>Date</th>
+                <th>Tags</th>
             </tr>
             {% for m in measures %}
                 <tr>
@@ -20,6 +21,7 @@
                 <td>{{ m.title }}</td>
                 <td>{{ m.user }}</td>
                 <td>{{ m.date }}</td>
+                <td>{{ m.tags }}</td>
                 </tr>
             {% endfor %}
 

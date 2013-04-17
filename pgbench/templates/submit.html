@@ -4,12 +4,14 @@
 
 {% block content %}
 
-    Submit measurement(s)...
-    <form method="post">
-        {{ form.as_p }}
-        <input type="submit"  >
-    </form>
+    {% if user.is_authenticated %}
+        Submit measurement(s)...
+        <form method="post">
+            {{ form.as_p }}
+            <input type="submit"  >
+        </form>
 
-    {% if confirm  %}Successful!{% endif %}
+        {% if confirm  %}Successful!{% endif %}
+    {% else %} You have to login first. {% endif %}
 
 {% endblock %}

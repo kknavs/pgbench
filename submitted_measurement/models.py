@@ -1,13 +1,15 @@
 from django.db import models
 from django.utils import timezone
 from django import forms
+from django.contrib.auth.models import User
 
 
 class SubmittedMeasurement(models.Model):
     title = models.CharField(max_length=200)
     date = models.DateTimeField('date of measurement', default=timezone.now)
-    user = models.CharField(max_length=100)
-    tags = []
+    user = models.ForeignKey(User)
+    #tags = []
+    tags = models.CharField(max_length=150, blank=True)
 
     def __unicode__(self):
         return unicode(self.id)
@@ -16,7 +18,7 @@ class SubmittedMeasurement(models.Model):
 class SubmittedMeasurementForm(forms.ModelForm):
     class Meta:
         model = SubmittedMeasurement
-        # exclude = ('tags')
+        exclude = 'user'
 
 
 class Choices(models.Model):
@@ -35,3 +37,8 @@ class Choices(models.Model):
     name = models.CharField(max_length=100)
     all_choices = models.PositiveSmallIntegerField(default=0, choices=ALL_CHOICES)
     user = models.CharField(max_length=100)
+
+
+class ChoicesForm(forms.ModelForm):
+    class Meta:
+        model = Choices
