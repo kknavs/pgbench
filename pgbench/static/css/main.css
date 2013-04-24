@@ -5,44 +5,16 @@ body {
     color: yellow;
 }
 
-#content {
-    height: 700px;
-    padding: 20px;
-}
-
 #footer {
     text-align: center;
-}
-
-#header > img {
-    padding: 20px;
-    width: 8%;
-    height: 8%;
-}
-
-li {
-    display: inline;
 }
 
 hr {
     margin: 0 auto;
 }
 
-.user_buttons {
-    float: right;
-    padding: 20px;
-    margin: 15px 10px;
-}
-
-.nav >li > a > img {
-    display: inline;
-    padding: 20px;
-    width: 8%;
-    height: 8%;
-}
-
 .nav > li > a.nav-message {
-    color: yellow;
+    color: inherit;
 }
 
 .nav > li > a.nav-message:hover {
