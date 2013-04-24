@@ -6,6 +6,7 @@
 
     {% load static %}
     <!-- CSS -->
+    <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.css" %}">
     <link type="text/css" rel="stylesheet" href="{% static "css/main.css" %}">
     {% block css %}{% endblock %}
 
@@ -16,6 +17,7 @@
     <!-- javascript -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{% static "javascript/bootstrap.js" %}"
     <script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
     {% block javascript %}
 
@@ -24,22 +26,13 @@
 </head>
 
 <body>
-<header id="header">
-    {% include "components/header.html" %}
-    <hr>
-</header>
+    {% include "components/nav.html" %}
 
-{% include "components/nav.html" %}
-
-
-<div id="content">
+<div class="container">
     {% block content %}{% endblock %}
 </div>
 
-<footer id="footer">
-    <hr>
-    {% include "components/footer.html" %}
-</footer>
+{% include "components/footer.html" %}
 
 
 </body>

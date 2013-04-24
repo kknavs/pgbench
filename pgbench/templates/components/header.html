@@ -3,13 +3,5 @@
 <h1 class="title" style="display: inline;">PGBENCH</h1>
 
 <ul class="user_buttons">
-    {% if user.is_authenticated %}
-        <li><a href="/logout" class="button">Logout</a></li>
-        <li> </br> </br>  Hello, {% if user.is_staff %}super {% endif %}{{ user.username }}.</li>
-    {% else %}
-        <li><a href="/login" class="button">Login</a></li>
-        <li><a href="/register" class="button">Register</a></li>
-        <li> </br></br>   Please register or login.</li>
-    {% endif %}
 
 </ul>
