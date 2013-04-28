@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    Please register
+
+    Please register:<br><br>
     <form method="post">
         {% for field in form %}
-            <div class="fieldWrapper">
+            <div class="">
                 {{ field.errors }}
                 {{ field }}
             </div>

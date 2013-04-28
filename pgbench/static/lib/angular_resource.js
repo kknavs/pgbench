@@ -46,7 +46,7 @@
  *   the data object (useful for non-GET operations).
  *
  * @param {Object.<Object>=} actions Hash with declaration of custom action that should extend the
- *   default set of resource actions. The declaration should be created in the format of {@link
+ *   default set of resource actions. The declaration should be created in the format of {@link//
  *   ng.$http#Parameters $http.config}:
  *
  *       {action1: {method:?, params:?, isArray:?, headers:?, ...},
@@ -80,7 +80,7 @@
  *   - **`withCredentials`** - `{boolean}` - whether to to set the `withCredentials` flag on the
  *     XHR object. See {@link https://developer.mozilla.org/en/http_access_control#section_5
  *     requests with credentials} for more information.
- *   - **`responseType`** - `{string}` - see {@link
+ *   - **`responseType`** - `{string}` - see {@link//
  *     https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#responseType requestType}.
  *
  * @returns {Object} A resource "class" object with methods for the default set of resource actions
