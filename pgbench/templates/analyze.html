@@ -14,7 +14,7 @@
         <tr>
             <th>Id</th>
             <th>Title</th>
-          {% comment %}  <th>User</th> ? {% endcomment %}
+            <th>User</th>
             <th>Date</th>
             <th>Tags</th>
         </tr>
@@ -22,6 +22,7 @@
         <tr ng-repeat="m in measures.objects">
             <td>{{ m.id }}</td>
             <td>{{ m.title }}</td>
+            <td>{{ m.user.username }}</td>
             <td>{{ m.date }}</td>
             <td>{{ m.tags }}</td>
         </tr>

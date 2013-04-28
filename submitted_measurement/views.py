@@ -1,4 +1,5 @@
-from submitted_measurement.models import SubmittedMeasurement, SubmittedMeasurementForm
+from submitted_measurement.models \
+    import SubmittedMeasurement, SubmittedMeasurementForm
 from django.shortcuts import render
 
 
@@ -10,7 +11,8 @@ def contact(request):
             title = form.cleaned_data['title']
             date = form.cleaned_data['date']
             tags = form.cleaned_data['tags']
-            sm = SubmittedMeasurement(user=request.user, title=title, date=date, tags=tags)
+            sm = SubmittedMeasurement(user=request.user,
+                                      title=title, date=date, tags=tags)
             sm.save()
             return render(request, 'submit.html', {
                 'form': form, 'confirm': True

@@ -8,4 +8,3 @@ class HomeView(generic_views.TemplateView):
 
     def get(self, request, *args, **kwargs):
         return super(HomeView, self).get(request, *args, **kwargs)
-

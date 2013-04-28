@@ -26,16 +26,19 @@ class UserRegistrationForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data['username']
         if len(username) < 4:
-            raise forms.ValidationError('Username too short', code='message_too_short')
+            raise forms.ValidationError('Username too short',
+                                        code='message_too_short')
         elif User.objects.filter(username=username).exists():
-            raise forms.ValidationError('Username already taken', code='username_taken')
+            raise forms.ValidationError('Username already taken',
+                                        code='username_taken')
         return username
 
     def clean_password2(self):
         password = self.cleaned_data.get("password", "")
         password2 = self.cleaned_data["password2"]
         if password != password2:
-            raise forms.ValidationError("Passwords don't match", code='passwords_dont_match')
+            raise forms.ValidationError("Passwords don't match",
+                                        code='passwords_dont_match')
         return password
 
 
@@ -54,7 +57,9 @@ class LoginForm(forms.Form):
         if User.objects.filter(username=username).exists():
             user = authenticate(username=username, password=password)
             if user is None:
-                raise forms.ValidationError("Wrong username/password", code="wrong_password")
+                raise forms.ValidationError("Wrong username/password",
+                                            code="wrong_password")
         else:
-            raise forms.ValidationError("User does not exist", code="non_existent_user")
+            raise forms.ValidationError("User does not exist",
+                                        code="non_existent_user")
         return password

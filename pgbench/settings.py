@@ -13,8 +13,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db/main_db.db',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'db/main_db.db',
+        # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -93,7 +95,7 @@ SECRET_KEY = ')f)#wwt5in#_)+kwl4-q58cxuedhlpist6sh3j49mdhu@6ggyl'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,7 +114,8 @@ ROOT_URLCONF = 'pgbench.urls'
 WSGI_APPLICATION = 'pgbench.wsgi.application'
 
 import os
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '', './templates').replace('\\','/'),)
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '',
+                              './templates').replace('\\', '/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -127,6 +130,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'pgbench',
     'submitted_measurement',
+    'tastypie',
 )
 
 # A sample logging configuration. The only tangible logging
