@@ -41,10 +41,11 @@ class Choice(models.Model):
         (9, '*Special field ...')
     )
     name = models.CharField(max_length=100)
-    all_choices = models.PositiveSmallIntegerField(default=0, choices=ALL_CHOICES)
+    all_choices = \
+        models.PositiveSmallIntegerField(default=0, choices=ALL_CHOICES)
     user = models.CharField(max_length=100)
 
 
 class ChoiceForm(forms.ModelForm):
     class Meta:
-        model = Choice
+        model = Choice        model = Choices
