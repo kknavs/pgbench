@@ -1,31 +1,34 @@
 {% extends "master.html" %}
 
+{% block html_attributes %}ng-app="pgbench"{% endblock %}
+{% block body_attributes %}ng-controller="pgbenchCtrl"{% endblock %}
+
 {% block title %}Analyze{% endblock %}
 
 {% block content %}
-
     Analyze...
+    <br/>
+
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+          {% comment %}  <th>User</th> ? {% endcomment %}
+            <th>Date</th>
+            <th>Tags</th>
+        </tr>
+        {% verbatim %}
+        <tr ng-repeat="m in measures.objects">
+            <td>{{ m.id }}</td>
+            <td>{{ m.title }}</td>
+            <td>{{ m.date }}</td>
+            <td>{{ m.tags }}</td>
+        </tr>
+        {% endverbatim %}
+    </table>
+
     <br/><br/>
-
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>User</th>
-                <th>Date</th>
-                <th>Tags</th>
-            </tr>
-            {% for m in measures %}
-                <tr>
-                <td>{{ m.id }}</td>
-                <td>{{ m.title }}</td>
-                <td>{{ m.user }}</td>
-                <td>{{ m.date }}</td>
-                <td>{{ m.tags }}</td>
-                </tr>
-            {% endfor %}
-
-        </table>
 
 
 {% endblock %}

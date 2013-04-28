@@ -24,4 +24,4 @@ def contact(request):
 
 
 def get(request):
-    return render(request, 'analyze.html', {'measures': SubmittedMeasurement.objects.all()})
+    return render(request, 'analyze.html')
