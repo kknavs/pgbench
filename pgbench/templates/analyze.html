@@ -6,25 +6,36 @@
 {% block title %}Analyze{% endblock %}
 
 {% block content %}
-    Analyze...
     <br><br>
-
-
     <table class="table">
         <tr>
             <th>Id</th>
             <th>Title</th>
             <th>User</th>
             <th>Date</th>
-            <th>Tags</th>
+            <th>Transaction type</th>
+            <th>Scaling factor</th>
+            <th>Threads</th>
+            <th>Clients</th>
+            <th>Transactions per client</th>
+            <th>Transactions</th>
+            <th>TPS</th>
+            <th>TPS (including establishing connections)</th>
         </tr>
         {% verbatim %}
         <tr ng-repeat="m in measures.objects">
             <td>{{ m.id }}</td>
             <td>{{ m.title }}</td>
             <td>{{ m.user.username }}</td>
-            <td>{{ m.date }}</td>
-            <td>{{ m.tags }}</td>
+            <td>{{ m.date | date: "d.M.y, h:m" }}</td>
+            <td>{{ m.transactionType }}</td>
+            <td>{{ m.scalingFactor }}</td>
+            <td>{{ m.threads }}</td>
+            <td>{{ m.clients }}</td>
+            <td>{{ m.transactionsPerClient }}</td>
+            <td>{{ m.transactions }}</td>
+            <td>{{ m.TPS }}</td>
+            <td>{{ m.TPSConnEstablish }}</td>
         </tr>
         {% endverbatim %}
     </table>
