@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background: rgb(100, 100, 100);
-    color: yellow;
+    background-color: #000;
+    color: #FFF;
 }
 
 #footer {
@@ -11,14 +11,11 @@ body {
 
 hr {
     margin: 0 auto;
+    border-color: #FFF;
 }
 
-.nav > li > a.nav-message {
-    color: inherit;
-}
-
-.nav > li > a.nav-message:hover {
-    color: inherit;
+.nav > li > a.nav-message, .nav > li > a.nav-message:hover {
+    color: #FF0
 }
 
 
