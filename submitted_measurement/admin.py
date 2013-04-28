@@ -1,4 +1,5 @@
 from django.contrib import admin
-from submitted_measurement.models import SubmittedMeasurement
+from submitted_measurement.models import *
 
-admin.site.register(SubmittedMeasurement)
+admin.site.register(SubmittedMeasurement, SubmittedMeasurementAdmin)
+admin.site.register(Choice)

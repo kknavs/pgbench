@@ -1,4 +1,4 @@
-from submitted_measurement.models import SubmittedMeasurement, SubmittedMeasurementForm
+from submitted_measurement.models import SubmittedMeasurement, SubmittedMeasurementForm, Choice
 from django.shortcuts import render
 
 

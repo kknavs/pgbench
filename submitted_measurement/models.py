@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib import admin
 
 
 class SubmittedMeasurement(models.Model):
@@ -15,13 +16,18 @@ class SubmittedMeasurement(models.Model):
         return unicode(self.id)
 
 
+class SubmittedMeasurementAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user', 'date')
+    list_filter = ('user', 'date')
+
+
 class SubmittedMeasurementForm(forms.ModelForm):
     class Meta:
         model = SubmittedMeasurement
         exclude = 'user'
 
 
-class Choices(models.Model):
+class Choice(models.Model):
     ALL_CHOICES = (
         (0, 'None'),
         (1, 'Transaction type'),
@@ -39,6 +45,6 @@ class Choices(models.Model):
     user = models.CharField(max_length=100)
 
 
-class ChoicesForm(forms.ModelForm):
+class ChoiceForm(forms.ModelForm):
     class Meta:
-        model = Choices
+        model = Choice
