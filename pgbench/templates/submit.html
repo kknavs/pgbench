@@ -5,8 +5,7 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        Submit measurement(s)...
-        <form method="post">
+        <form method="post" class="form-horizontal">
             {{ form.as_p }}
             <input type="submit" >
         </form>

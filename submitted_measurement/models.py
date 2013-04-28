@@ -10,11 +10,11 @@ class SubmittedMeasurement(models.Model):
     date = models.DateTimeField('date of measurement', default=timezone.now)
     user = models.ForeignKey(User)
     tags = models.CharField(max_length=150, blank=True)
-    transactionType = models.CharField(max_length=150, blank=True)
+    transactionType = models.CharField('transaction type', max_length=150, blank=True)
     scalingFactor = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     threads = models.IntegerField(max_length=30, blank=True, null=True)
     clients = models.IntegerField(max_length=30, blank=True, null=True)
-    transactionsPerClient = models.IntegerField(max_length=30, blank=True, null=True)
+    transactionsPerClient = models.IntegerField('Transactions per client' ,max_length=30, blank=True, null=True)
     transactions = models.IntegerField(max_length=30, blank=True, null=True)
     TPS = models.IntegerField(max_length=30, blank=True, null=True)
     TPSConnEstablish = models.IntegerField(max_length=30)
@@ -24,7 +24,8 @@ class SubmittedMeasurement(models.Model):
 
 
 class SubmittedMeasurementAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'date')
+    list_display = ('title', 'user', 'date', 'transactionType', 'scalingFactor', 'threads', 'clients',
+                    'transactionsPerClient', 'transactions', 'TPS', 'TPSConnEstablish')
     list_filter = ('user', 'date')
 
 

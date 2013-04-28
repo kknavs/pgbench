@@ -5,22 +5,26 @@ body {
     color: #FFF;
 }
 
-#footer {
-    text-align: center;
-}
-
-hr {
-    margin: 0 auto;
-    border-color: #FFF;
-}
-
+/* login and logout messages */
 .nav > li > a.nav-message, .nav > li > a.nav-message:hover {
     color: #FF0
 }
 
-.logo-navbar {
-    height: 25px;
+/* footer */
+.footer {
+    text-align: center;
 }
+
+/* navigation bar */
+.menu-bar {
+    margin-bottom: 0;
+}
+
+/* content */
+.content{
+    padding-top: 20px;
+}
+
 
 
 
