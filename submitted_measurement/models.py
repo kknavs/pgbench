@@ -35,7 +35,8 @@ class Choices(models.Model):
         (9, '*Special field ...')
     )
     name = models.CharField(max_length=100)
-    all_choices = models.PositiveSmallIntegerField(default=0, choices=ALL_CHOICES)
+    all_choices = \
+        models.PositiveSmallIntegerField(default=0, choices=ALL_CHOICES)
     user = models.CharField(max_length=100)
 
 
