@@ -1,12 +1,18 @@
 {% extends "master.html" %}
+{% load static %}
 
 {% block html_attributes %}ng-app="pgbench"{% endblock %}
 {% block body_attributes %}ng-controller="pgbenchCtrl"{% endblock %}
 
+{% block javascript %}
+    <script src="{% static 'javascript/analyze.js' %}"></script>
+{% endblock %}
+
 {% block title %}Analyze{% endblock %}
 
 {% block content %}
-    <br><br>
+    <!--<div id="placeholder" style="width:600px;height:300px"></div>-->
+    <br>
     <table class="table">
         <tr>
             <th>Id</th>
