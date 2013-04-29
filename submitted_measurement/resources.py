@@ -12,9 +12,13 @@ class UserResource(ModelResource):
         fields = ['username', 'last_login']
         allowed_methods = ['get']
 
+    # called every time when object is prepared for serialization
+    def dehydrate(self, bundle):
+        return bundle.data['username']
+
 
 class MeasuresResource(ModelResource):
-    user = fields.ToOneField(UserResource, 'user', full=True)
+    user = fields.ForeignKey(UserResource, 'user', full=True)
 
     class Meta:
         queryset = SubmittedMeasurement.objects.all()
