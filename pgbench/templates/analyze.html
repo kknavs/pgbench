@@ -1,12 +1,18 @@
 {% extends "master.html" %}
+{% load static %}
 
 {% block html_attributes %}ng-app="pgbench"{% endblock %}
 {% block body_attributes %}ng-controller="pgbenchCtrl"{% endblock %}
 
+{% block javascript %}
+    <script src="{% static 'javascript/analyze.js' %}"></script>
+{% endblock %}
+
 {% block title %}Analyze{% endblock %}
 
 {% block content %}
-    <br><br>
+    <!--<div id="placeholder" style="width:600px;height:300px"></div>-->
+    <br>
     <table class="table">
         <tr>
             <th>Id</th>
@@ -27,7 +33,7 @@
             <td>{{ m.id }}</td>
             <td>{{ m.title }}</td>
             <td>{{ m.user.username }}</td>
-            <td>{{ m.date | date: "d.M.y, h:m" }}</td>
+            <td>{{ m.date }}</td>
             <td>{{ m.transactionType }}</td>
             <td>{{ m.scalingFactor }}</td>
             <td>{{ m.threads }}</td>
