@@ -13,6 +13,8 @@
 {% block content %}
     <!--<div id="placeholder" style="width:600px;height:300px"></div>-->
     <br>
+    <div ng-click="alertTPS()">Demo clickable - Please click me</div>
+    <button id="graph">Test</button>
     <table class="table">
         <tr>
             <th>Id</th>
@@ -32,7 +34,7 @@
         <tr ng-repeat="m in measures.objects">
             <td>{{ m.id }}</td>
             <td>{{ m.title }}</td>
-            <td>{{ m.user.username }}</td>
+            <td>{{ m.user }}</td>
             <td>{{ m.date }}</td>
             <td>{{ m.transactionType }}</td>
             <td>{{ m.scalingFactor }}</td>
