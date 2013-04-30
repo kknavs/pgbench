@@ -11,10 +11,25 @@
 {% block title %}Analyze{% endblock %}
 
 {% block content %}
-    <!--<div id="placeholder" style="width:600px;height:300px"></div>-->
+    <div id="placeholder" style="width:600px;height:300px"></div>
     <br>
-    <div ng-click="alertTPS()">Demo clickable - Please click me</div>
-    <button id="graph">Test</button>
+    <!--<div ng-click="alertTPS()">Demo clickable - Please click me</div>
+    <button id="graph">Test</button>-->
+
+    <script>
+        setTimeout(function () {
+                    var t = getData("TPSConnEstablish");
+                    var c = $("#placeholder");
+                    var d = prepData(t);
+                    plotGraph(c, d);
+                },
+                500
+        )
+        ;
+    </script>
+
+    <div class="izpis"></div>
+
     <table class="table">
         <tr>
             <th>Id</th>
