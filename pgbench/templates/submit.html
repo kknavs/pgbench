@@ -5,14 +5,21 @@
 {% block content %}
 
     {% if user.is_authenticated %}
+        {% if messages %}
+        <ul class="message">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <form method="post" class="form-horizontal">
             {{ form.as_p }}
+            <p class="message">Special field:</p>
+            {{ fieldsForm.as_p }}
             <input type="submit" >
         </form>
 
-        {% if confirm  %}
-            Successful!
-        {% endif %}
 
     {% else %}
         You have to login first.

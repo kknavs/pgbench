@@ -5,8 +5,8 @@ body {
     color: #FFF;
 }
 
-/* login and logout messages */
-.nav > li > a.nav-message, .nav > li > a.nav-message:hover {
+/* colored text & login and logout messages */
+.message, .nav > li > a.nav-message, .nav > li > a.nav-message:hover {
     color: #FF0
 }
 

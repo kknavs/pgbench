@@ -37,6 +37,35 @@ class SubmittedMeasurementAdmin(admin.ModelAdmin):
 
 
 class SubmittedMeasurementForm(forms.ModelForm):
+
     class Meta:
         model = SubmittedMeasurement
         exclude = 'user'
+
+
+class Fields(models.Model):
+    measure = models.ForeignKey(SubmittedMeasurement)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    typeOf = models.CharField(max_length=30, blank=True, null=True)
+    value = models.CharField(max_length=100, blank=True, null=True)
+
+    def __unicode__(self):
+        return unicode(self.name+": "+self.value)
+
+
+class FieldsForm(forms.ModelForm):
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        cd = cleaned_data
+        str_list = filter(bool, cd.values())
+        if 0 < len(str_list) < len(cd):
+            raise forms.ValidationError(
+                "All fields of one 'Special field' "
+                "must be filled up or left empty.")
+        # Always return the full collection of cleaned data.
+        return cd
+
+    class Meta:
+        model = Fields
+        exclude = 'measure'
