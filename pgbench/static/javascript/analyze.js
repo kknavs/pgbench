@@ -1,15 +1,19 @@
-$(document).ready(function () {
+angular.element(document).ready(function () {
 
-    $("#graph").click(function () {
-        var x = angular.element('[ng-controller=pgbenchCtrl]').scope().measures['objects'];
-        var y = new Array(x.length);
-        //mora bit nova spremenljivka, drugače se vrednosti prepišejo
-        $.each(x, function (index, val) {
-            y[index] = val.TPSConnEstablish;
-        });
-        alert(y);
-    });
+        var refreshIntervalId;
 
+        refreshIntervalId = setInterval(function () {
+                    if (angular.element('[ng-controller=pgbenchCtrl]').scope().measures['objects']!=undefined){
+                        clearInterval(refreshIntervalId);
+                        var t = getData("TPSConnEstablish");
+                        var c = $("#placeholder");
+                        var d = prepData(t);
+                        plotGraph(c, d);
+                    }
+                },
+                500
+        )
+        ;
 });
 
 function getData(col) {

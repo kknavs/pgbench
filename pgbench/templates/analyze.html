@@ -11,24 +11,14 @@
 {% block title %}Analyze{% endblock %}
 
 {% block content %}
+
+    {% if not user.is_authenticated %}
+        You have to login first.
+    {% endif %}
+
     <div id="placeholder" style="width:600px;height:300px"></div>
     <br>
-    <!--<div ng-click="alertTPS()">Demo clickable - Please click me</div>
-    <button id="graph">Test</button>-->
 
-    <script>
-        setTimeout(function () {
-                    var t = getData("TPSConnEstablish");
-                    var c = $("#placeholder");
-                    var d = prepData(t);
-                    plotGraph(c, d);
-                },
-                500
-        )
-        ;
-    </script>
-
-    <div class="izpis"></div>
 
     <table class="table">
         <tr>
@@ -44,6 +34,7 @@
             <th>Transactions</th>
             <th>TPS</th>
             <th>TPS (including establishing connections)</th>
+            <th>Special fields</th>
         </tr>
         {% verbatim %}
         <tr ng-repeat="m in measures.objects">
@@ -59,6 +50,7 @@
             <td>{{ m.transactions }}</td>
             <td>{{ m.TPS }}</td>
             <td>{{ m.TPSConnEstablish }}</td>
+            <td><span ng-repeat="f in m.fields">{{f}}</span></td>
         </tr>
         {% endverbatim %}
     </table>
