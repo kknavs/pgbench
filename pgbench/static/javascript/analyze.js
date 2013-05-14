@@ -1,20 +1,31 @@
 angular.element(document).ready(function () {
+    var refreshIntervalId;
 
-        var refreshIntervalId;
-
-        refreshIntervalId = setInterval(function () {
-                    if (angular.element('[ng-controller=pgbenchCtrl]').scope().measures['objects']!=undefined){
-                        clearInterval(refreshIntervalId);
-                        var t = getData("TPSConnEstablish");
-                        var c = $("#placeholder");
-                        var d = prepData(t);
-                        plotGraph(c, d);
-                    }
-                },
-                500
-        )
-        ;
+    refreshIntervalId = setInterval(function () {
+            if (angular.element('[ng-controller=pgbenchCtrl]').scope().measures['objects'] != undefined) {
+                clearInterval(refreshIntervalId);
+                var data = getAllData();
+                var c = $("#placeholder");
+                plotGraph(c, data);
+            }
+        },
+        50
+    )
+    ;
 });
+
+function getAllData() {
+    var columns = ['scalingFactor', 'threads', 'clients',
+        'transactionsPerClient', 'transactions',
+        'TPS', 'TPSConnEstablish'];
+    var data = [];
+    for (i = 0; i < columns.length; i++) {
+        var str = columns[i];
+        data.push({label: str, data: prepData(getData(str))});
+    }
+    //data.remove(data.getIndex("threads"));
+    return data;
+}
 
 function getData(col) {
     var x = angular.element('[ng-controller=pgbenchCtrl]').scope().measures['objects'];
@@ -26,19 +37,22 @@ function getData(col) {
 }
 
 function prepData(data) {
-    var d = []
+    var d = [];
     for (var i = 0; i < data.length; i++) {
-        d.push([i, data[i]]);
+        var temp = data[i];
+        if (temp != null) {
+            d.push([i, data[i]]);
+        }
     }
     return d;
 }
 
 function plotGraph(x, d1) {
-    $.plot(x, [ d1 ], {
+    var options = {
         series: {
             bars: {
                 show: true,
-                barWidth: 0.6
+                barWidth: 1
             }
         },
         xaxis: {
@@ -48,5 +62,6 @@ function plotGraph(x, d1) {
             //max: 5000
         },
         colors: ["#ffff00"]
-    });
+    };
+    $.plot(x, d1, options);
 }
