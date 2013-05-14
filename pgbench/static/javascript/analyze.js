@@ -4,15 +4,60 @@ angular.element(document).ready(function () {
     refreshIntervalId = setInterval(function () {
             if (angular.element('[ng-controller=pgbenchCtrl]').scope().measures['objects'] != undefined) {
                 clearInterval(refreshIntervalId);
-                var data = getAllData();
+
                 var c = $("#placeholder");
-                plotGraph(c, data);
+                var data = getAllData();
+                var choice = $("#radio");
+                var names =
+                    {'scalingFactor': 'Scaling factor',
+                        'threads': 'Threads',
+                        'clients': 'Clients',
+                        'transactionsPerClient': 'Transactions per client',
+                        'transactions': 'Transactions',
+                        'TPS': 'TPS',
+                        'TPSConnEstablish': 'TPS (including)'
+                    }
+                    ;
+                for (i = 0; i < data.length; i++) {
+                    temp = names[data[i].label];
+                    key = getKey(names, temp);
+                    if (i == 0) {
+                        choice.append("<input checked type='radio' name='selection' value='" + key + "' style='vertical-align: middle; margin: 0px;'>" + temp + "&nbsp;&nbsp;");
+                    }
+                    else {
+                        choice.append("<input type='radio' name='selection' value='" + key + "' style='vertical-align: middle; margin: 0px;'>" + temp + "&nbsp;&nbsp;");
+                    }
+                }
+
+                $("input[name='selection']").change(function () {
+                    plotSelected(c, this.value);
+                });
+
+                sel = $("input[name='selection']:checked");
+                console.log(sel.val());
+                plotSelected(c, sel.val());
             }
         },
         50
     )
     ;
 });
+
+function plotSelected(c, val) {
+    data = [];
+    temp = prepData(getData(val));
+    data.push({label: val, data: temp});
+    plotGraph(c, data);
+}
+
+function getKey(data, value) {
+    for (var key in data) {
+        if (data[key] == value) {
+            return key;
+        }
+    }
+    return null;
+}
 
 function getAllData() {
     var columns = ['scalingFactor', 'threads', 'clients',
@@ -23,7 +68,6 @@ function getAllData() {
         var str = columns[i];
         data.push({label: str, data: prepData(getData(str))});
     }
-    //data.remove(data.getIndex("threads"));
     return data;
 }
 
@@ -48,6 +92,7 @@ function prepData(data) {
 }
 
 function plotGraph(x, d1) {
+    var legend = $(".legend");
     var options = {
         series: {
             bars: {
@@ -61,7 +106,12 @@ function plotGraph(x, d1) {
         yaxis: {
             //max: 5000
         },
-        colors: ["#ffff00"]
+        colors: ["#ffff00"],
+        legend: {
+            show: false,
+            backgroundOpacity: 0.5,
+            container: legend
+        }
     };
     $.plot(x, d1, options);
 }

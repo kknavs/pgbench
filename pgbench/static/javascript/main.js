@@ -5,11 +5,12 @@ Array.prototype.remove = function (from, to) {
 };
 
 Array.prototype.getIndex = function (label) {
-    for (var i = 0; i<this.length; i++){
+    for (var i = 0; i < this.length; i++) {
         var temp = this[i].label;
-        if (temp == label){
+        if (temp == label) {
             return i;
         }
     }
     return -1;
 };
+
