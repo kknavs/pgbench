@@ -31,6 +31,21 @@ body {
     margin-right: auto;
 }
 
+/* graf */
+
+#radio {
+    text-align: center;
+}
+
+#radio > input {
+    margin-bottom: 0.5em;
+}
+
+#radio > label {
+    display: inline;
+    margin: 0 10px 0 3px;
+}
+
 
 
 
