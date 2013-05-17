@@ -18,14 +18,14 @@ angular.element(document).ready(function () {
                         'TPSConnEstablish': 'TPS (including)'
                     }
                     ;
-                for (i = 0; i < data.length; i++) {
-                    temp = names[data[i].label];
-                    key = getKey(names, temp);
+                for (var i = 0; i < data.length; i++) {
+                    var temp = names[data[i].label];
+                    var key = getKey(names, temp);
                     if (i == 0) {
-                        choice.append("<input checked type='radio' name='selection' value='" + key + "' style='vertical-align: middle; margin: 0px;'>" + temp + "&nbsp;&nbsp;");
+                        choice.append("<input checked type='radio' name='selection' value='" + key + "'><label>" + temp + "</label>");
                     }
                     else {
-                        choice.append("<input type='radio' name='selection' value='" + key + "' style='vertical-align: middle; margin: 0px;'>" + temp + "&nbsp;&nbsp;");
+                        choice.append("<input type='radio' name='selection' value='" + key + "'><label>" + temp + "</label>");
                     }
                 }
 
@@ -33,8 +33,8 @@ angular.element(document).ready(function () {
                     plotSelected(c, this.value);
                 });
 
-                sel = $("input[name='selection']:checked");
-                console.log(sel.val());
+                var sel = $("input[name='selection']:checked");
+                //console.log(sel.val());
                 plotSelected(c, sel.val());
             }
         },
@@ -44,9 +44,19 @@ angular.element(document).ready(function () {
 });
 
 function plotSelected(c, val) {
-    data = [];
-    temp = prepData(getData(val));
-    data.push({label: val, data: temp});
+    var colors = {'scalingFactor': '#0000ff',
+            'threads': '#00ff00',
+            'clients': '#ff0000',
+            'transactionsPerClient': '#ff00ff',
+            'transactions': '#ffff00',
+            'TPS': '#00ffff',
+            'TPSConnEstablish': '#ffffff'
+        }
+        ;
+    var data = [];
+    var temp = prepData(getData(val));
+    var color = colors[val];
+    data.push({label: val, data: temp, color: color});
     plotGraph(c, data);
 }
 
@@ -64,7 +74,7 @@ function getAllData() {
         'transactionsPerClient', 'transactions',
         'TPS', 'TPSConnEstablish'];
     var data = [];
-    for (i = 0; i < columns.length; i++) {
+    for (var i = 0; i < columns.length; i++) {
         var str = columns[i];
         data.push({label: str, data: prepData(getData(str))});
     }
@@ -91,7 +101,14 @@ function prepData(data) {
     return d;
 }
 
-function plotGraph(x, d1) {
+function plotGraph(x, d1, color) {
+    var c;
+    if (color == undefined) {
+        c = "#ffff00";
+    }
+    else {
+        c = color;
+    }
     var legend = $(".legend");
     var options = {
         series: {
@@ -106,7 +123,7 @@ function plotGraph(x, d1) {
         yaxis: {
             //max: 5000
         },
-        colors: ["#ffff00"],
+        colors: [c],
         legend: {
             show: false,
             backgroundOpacity: 0.5,
