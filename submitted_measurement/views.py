@@ -47,3 +47,7 @@ def contact(request):
 
 def get(request):
     return render(request, 'analyze.html')
+
+
+def search(request):
+    return render(request, 'search.html')

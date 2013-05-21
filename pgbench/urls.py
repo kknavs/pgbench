@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url, include
-from django.views.generic import TemplateView
 from pgbench.frontend import views as frontend_views
 from pgbench.users import views as user_views
 from submitted_measurement import views as measure_views
@@ -20,9 +19,9 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', frontend_views.HomeView.as_view(), name='home'),
-    url(r'^search/$', TemplateView.as_view(template_name="search.html")),
+    url(r'^search/$', measure_views.search),
     url(r'^submit/$', measure_views.contact, name="submitM"),
-    url(r'^analyze/$', measure_views.get, name="show"),
+    url(r'^analyze/$', measure_views.get),
     url(r'^register/$',
         user_views.RegisterView.as_view(template_name='users/register.html')),
     url(r'^login/$',
