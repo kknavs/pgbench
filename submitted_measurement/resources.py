@@ -3,10 +3,10 @@ from tastypie.resources import ModelResource
 from submitted_measurement.models import SubmittedMeasurement, Fields
 from django.contrib.auth.models import User
 from tastypie import fields
-from django.core.paginator import Paginator, InvalidPage
-from django.http import Http404
 from django.conf.urls import *
 from tastypie.utils import trailing_slash
+import operator
+from django.db.models import Q
 
 
 class UserResource(ModelResource):
@@ -47,13 +47,12 @@ class MeasuresResource(ModelResource):
         l = list(Fields.objects.filter(measure=bundle.data['id']))
         if l:
             bundle.data['fields'] = l
-        else:
-            bundle.data['fields'] = '/'
         return bundle
 
     def prepend_urls(self):
         return [
-            url(r"^(?P<resource_name>%s)/search%s$" % (self._meta.resource_name,
+            url(r"^(?P<resource_name>%s)/search%s$" %
+                (self._meta.resource_name,
                 trailing_slash()), self.wrap_view('get_search'),
                 name="api_get_search"),
         ]
@@ -72,18 +71,21 @@ class MeasuresResource(ModelResource):
         if 'q' in request.GET and request.GET['q']:
             q = request.GET['q']
         # Do the query.
-        sqs = super(MeasuresResource, self)\
-            .get_object_list(request).filter(title__icontains=q, user=request.user.pk)
-        paginator = Paginator(sqs, 20)
-
-        try:
-            page = paginator.page(int(request.GET.get('page', 1)))
-        except InvalidPage:
-            raise Http404("Sorry, no results on that page.")
-
+        fields = \
+            [f.name+'__contains' for f in SubmittedMeasurement._meta.fields]
+        fields2 = [f.name+'__contains' for f in Fields._meta.fields]
+        fields2.remove('measure__contains')
+        fields.remove('user__contains')
+        queries = [Q(**{f: q}) for f in fields]
+        queries2 = [Q(**{f: q}) for f in fields2]
+        qs = reduce(operator.or_, queries)
+        qs2 = reduce(operator.or_, queries2)
+        sqs2 = Fields.objects.values_list('measure', flat=True).filter(qs2)
+        sqs = super(MeasuresResource, self).get_object_list(
+            request).filter((Q(qs) | Q(id__in=sqs2)) & Q(user=request.user.pk))
         objects = []
 
-        for result in page.object_list:
+        for result in sqs:
             bundle = self.build_bundle(obj=result, request=request)
             bundle = self.full_dehydrate(bundle)
             objects.append(bundle)
