@@ -8,10 +8,10 @@
 
 {% block content %}
 
-    <form method="get" class="form-search">
-        <input type="text" class="input-medium search-query" ng-model="q">
-        <button ng-click="result=find(q)" type="submit" class="btn">Search</button>
-    </form>
+     <form method="get" class="form-search"   >
+         <input type="text" class="input-medium search-query" ng-model="q">
+         <button class="btn" ng-click="find(q)" >Search</button>
+     </form>
 
     {% if not user.is_authenticated %}
         You have to login first.
