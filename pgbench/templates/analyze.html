@@ -17,7 +17,7 @@
     {% endif %}
 
     <div id="graph">
-        <div id="placeholder" style="width:600px;height:300px"></div>
+        <div id="placeholder"></div>
         <br>
         <div id="radio">
 
@@ -25,7 +25,6 @@
     </div>
 
     <br>
-
 
     <table class="table">
         <tr>
@@ -48,7 +47,7 @@
             <td>{{ m.id }}</td>
             <td>{{ m.title }}</td>
             <td>{{ m.user }}</td>
-            <td>{{ m.date }}</td>
+            <td>{{ m.date | isodate | date:"d/M/yyyy HH:mm" }}</td>
             <td>{{ m.transactionType }}</td>
             <td>{{ m.scalingFactor }}</td>
             <td>{{ m.threads }}</td>

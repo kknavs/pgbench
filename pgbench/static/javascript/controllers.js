@@ -22,6 +22,4 @@ function pgbenchCtrlS($scope, SearchM) {
             }
         });
     }
-};
-
-
+}
