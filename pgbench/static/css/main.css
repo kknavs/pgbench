@@ -26,18 +26,26 @@ body {
     padding-bottom: 50px;
 }
 
-#placeholder {
-    margin-left: auto;
-    margin-right: auto;
+/* submit page */
+
+.submit {
+    margin-left: 40px;
+    margin-top: 20px;
 }
 
-#uploadForm {
+.errorlist > li{
+    color: red;
+}
+
+#uploadForm, #inputForm {
     margin-top: 10px;
 }
 
 /* graf */
 
 #placeholder {
+    margin-left: auto;
+    margin-right: auto;
     width: 600px;
     height: 300px
 }

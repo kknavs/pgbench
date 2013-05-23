@@ -17,8 +17,8 @@
     <script src="{% static 'javascript/services.js' %}"></script>
     <script src="{% static 'javascript/controllers.js' %}"></script>
     <script src="{% static 'javascript/app.js' %}"></script>
+    <script src="{% static 'javascript/jquery.dataTables.js' %}"></script>
     <script src="{% static 'javascript/jquery.flot.js' %}"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{% static "javascript/bootstrap.js" %}"></script>
     <script type="text/javascript" src="{% static "javascript/main.js" %}"></script>
     {% block javascript %}{% endblock %}
@@ -26,7 +26,7 @@
 </head>
 
 <body {% block body_attributes %}{% endblock %}>
-    {% include "components/nav.html" %}
+{% include "components/nav.html" %}
 
 <div class="container content">
     {% block content %}{% endblock %}
