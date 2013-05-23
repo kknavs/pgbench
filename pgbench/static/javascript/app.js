@@ -1,4 +1,4 @@
-angular.module('pgbench', ['pgbenchServices']).filter('isodate', function(){
+angular.module('pgbench', ['pgbenchServices']).filter('datefix', function(){
    return function(datetime){
        //začasna rešitev, ne vem zakaj v db datumu manjka offset
  	   return datetime.split(".")[0]+".000+0200";
