@@ -14,7 +14,7 @@
 
     {% if not user.is_authenticated %}
         You have to login first.
-    {% endif %}
+    {% else %}
 
     <div id="graph">
         <div id="placeholder"></div>
@@ -26,8 +26,13 @@
 
     <br>
 
-    <table class="table">
-        <tr>
+       <table class="table" my-table="overrideOptions"
+            aa-data="measures.objects"
+            ao-column-defs="columnDefs"
+            fn-row-callback="myCallback"
+            >
+            <thead>
+            <tr>
             <th>Id</th>
             <th>Title</th>
             <th>User</th>
@@ -41,26 +46,11 @@
             <th>TPS</th>
             <th>TPS (including establishing connections)</th>
             <th>Special fields</th>
-        </tr>
-        {% verbatim %}
-        <tr ng-repeat="m in measures.objects">
-            <td>{{ m.id }}</td>
-            <td>{{ m.title }}</td>
-            <td>{{ m.user }}</td>
-            <td>{{ m.date | datefix | date:"d/M/yyyy HH:mm" }}</td>
-            <td>{{ m.transactionType }}</td>
-            <td>{{ m.scalingFactor }}</td>
-            <td>{{ m.threads }}</td>
-            <td>{{ m.clients }}</td>
-            <td>{{ m.transactionsPerClient }}</td>
-            <td>{{ m.transactions }}</td>
-            <td>{{ m.TPS }}</td>
-            <td>{{ m.TPSConnEstablish }}</td>
-            <td><span ng-repeat="f in m.fields">{{f}}</span></td>
-        </tr>
-        {% endverbatim %}
-    </table>
 
+            </tr>
+            </thead>
+        </table>
+   {% endif %}
     <br/><br/>
 
 

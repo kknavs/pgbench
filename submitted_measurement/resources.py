@@ -47,6 +47,9 @@ class MeasuresResource(ModelResource):
         l = list(Fields.objects.filter(measure=bundle.data['id']))
         if l:
             bundle.data['fields'] = l
+        else:
+            bundle.data['fields'] = ""
+        bundle.data['date'] = unicode(bundle.data['date']).split('+')[0]
         return bundle
 
     def prepend_urls(self):

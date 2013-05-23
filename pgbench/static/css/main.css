@@ -23,7 +23,7 @@ body {
 /* content */
 .content {
     padding-top: 20px;
-    padding-bottom: 50px;
+    padding-bottom: 80px;
 }
 
 /* submit page */
@@ -68,6 +68,76 @@ body {
 .tooltip-inner {
     font-size: 14px;
 }
+
+.ng-invalid {
+    border: 1px solid red;
+}
+
+/* datatable */
+
+th{
+  -webkit-box-shadow: 0 5px 10px #777 inset;
+  -moz-box-shadow: 0 5px 10px #777 inset;
+  box-shadow: 0 5px 10px #777 inset;
+}
+
+th:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.error {
+    color: red;
+}
+
+.ui-helper-hidden {
+    display: none;
+}
+
+/*.even {
+    background-color: #151515;
+}*/
+
+.sorting_1{
+    background-color: #151515;
+}
+
+.dataTables_length {
+    width: 40%;
+    float: right;
+}
+
+.paging_full_numbers {
+    padding: 2px 6px;
+    margin: 0;
+    cursor: pointer;
+    * cursor: hand;
+    color:  #FFF;
+    	width: 400px;
+	height: 22px;
+}
+
+.paging_full_numbers a:hover {
+	text-decoration: underline;
+}
+
+.paging_full_numbers a.paginate_button,
+ 	.paging_full_numbers a.paginate_active {
+    padding: 2px 6px;
+    margin: 0;
+    cursor: pointer;
+    * cursor: hand;
+    color:  #FFF;
+}
+
+.paging_full_numbers a.paginate_button:hover {
+	text-decoration: underline;
+}
+
+.paging_full_numbers a.paginate_active {
+	background-color: #151515;
+}
+
 
 
 
