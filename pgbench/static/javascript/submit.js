@@ -1,7 +1,19 @@
-/**
- * Created with PyCharm.
- * User: Jon
- * Date: 22.5.2013
- * Time: 21:57
- * To change this template use File | Settings | File Templates.
- */
+$(document).ready(function () {
+        var upload = $("#uploadForm");
+        var input = $("#inputForm");
+        upload.hide();
+        input.hide();
+
+        var uploadBtn = $("#upload");
+        var inputBtn = $("#input");
+        uploadBtn.click(function () {
+            input.hide();
+            upload.show();
+        });
+        inputBtn.click(function () {
+            input.show();
+            upload.hide();
+        });
+    }
+)
+;

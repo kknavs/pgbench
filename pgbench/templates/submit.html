@@ -1,23 +1,44 @@
 {% extends "master.html" %}
+{% load static %}
 
 {% block title %}Submit{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'javascript/submit.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 
     {% if user.is_authenticated %}
         {% if messages %}
-        <ul class="message">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
+            <ul class="message">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
         {% endif %}
 
-        <form method="post" class="form-horizontal">
+        <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Choose method
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="input">Input</a></li>
+                <li><a href="#" id="upload">Upload</a></li>
+            </ul>
+        </div>
+
+        <form method="post" class="form-horizontal" id="uploadForm">
+            <input type="file" value="uploadedFile">
+            <input type="submit" class="btn">
+        </form>
+
+        <form method="post" class="form-horizontal" id="inputForm">
             {{ form.as_p }}
             <p class="message">Special field:</p>
             {{ fieldsForm.as_p }}
-            <input type="submit" >
+            <input type="submit" class="btn">
         </form>
 
 

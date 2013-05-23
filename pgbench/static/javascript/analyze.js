@@ -1,6 +1,7 @@
 angular.element(document).ready(function () {
     var refreshIntervalId;
 
+
     refreshIntervalId = setInterval(function () {
             if (angular.element('[ng-controller=pgbenchCtrl]').scope().measures['objects'] != undefined) {
                 clearInterval(refreshIntervalId);
@@ -9,25 +10,39 @@ angular.element(document).ready(function () {
                 var data = getAllData();
                 var choice = $("#radio");
                 var names =
-                    {'scalingFactor': 'Scaling factor',
-                        'threads': 'Threads',
-                        'clients': 'Clients',
-                        'transactionsPerClient': 'Transactions per client',
-                        'transactions': 'Transactions',
-                        'TPS': 'TPS',
-                        'TPSConnEstablish': 'TPS (including)'
+                {'scalingFactor': 'Scaling factor',
+                    'threads': 'Threads',
+                    'clients': 'Clients',
+                    'transactionsPerClient': 'Transactions per client',
+                    'transactions': 'Transactions',
+                    'TPS': 'TPS',
+                    'TPSConnEstablish': 'TPS (including)'
+                };
+                var tooltips = {
+                        'scalingFactor': 'Factor by which the measurements are scaled',
+                        'threads': 'Number of threads running in a measurement',
+                        'clients': 'Number of clients connecting to server',
+                        'transactionsPerClient': 'Number of transactions per client completed during the measurement',
+                        'transactions': 'Number of all transactions',
+                        'TPS': 'Number of transactions per second',
+                        'TPSConnEstablish': 'Number of transactions per second including establishing connections'
                     }
                     ;
                 for (var i = 0; i < data.length; i++) {
                     var temp = names[data[i].label];
                     var key = getKey(names, temp);
+                    var tooltip = tooltips[data[i].label];
+                    console.log(tooltip);
                     if (i == 0) {
-                        choice.append("<input checked type='radio' name='selection' value='" + key + "'><label>" + temp + "</label>");
+                        choice.append("<input checked type='radio' name='selection' value='" + key +
+                            "'><a data-toggle='tooltip' title='" + tooltip + "' class='link'>" + temp + "</a>");
                     }
                     else {
-                        choice.append("<input type='radio' name='selection' value='" + key + "'><label>" + temp + "</label>");
+                        choice.append("<input type='radio' name='selection' value='" + key +
+                            "'><a data-toggle='tooltip' title='" + tooltip + "' class='link'>" + temp + "</a>");
                     }
                 }
+                $(".link").tooltip();
 
                 $("input[name='selection']").change(function () {
                     plotSelected(c, this.value);
