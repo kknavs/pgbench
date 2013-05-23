@@ -37,7 +37,6 @@ class SubmittedMeasurementAdmin(admin.ModelAdmin):
 
 
 class SubmittedMeasurementForm(forms.ModelForm):
-
     class Meta:
         model = SubmittedMeasurement
         exclude = 'user'
@@ -50,11 +49,10 @@ class Fields(models.Model):
     value = models.CharField(max_length=100, blank=True, null=True)
 
     def __unicode__(self):
-        return unicode(self.name+": "+self.value)
+        return unicode(self.name + ": " + self.value)
 
 
 class FieldsForm(forms.ModelForm):
-
     def clean(self):
         cleaned_data = self.cleaned_data
         cd = cleaned_data
@@ -63,9 +61,15 @@ class FieldsForm(forms.ModelForm):
             raise forms.ValidationError(
                 "All fields of one 'Special field' "
                 "must be filled up or left empty.")
-        # Always return the full collection of cleaned data.
+            # Always return the full collection of cleaned data.
         return cd
 
     class Meta:
         model = Fields
         exclude = 'measure'
+
+
+class UploadForm(forms.Form):
+    upload = forms.FileField(
+        label='Select a file (must be in .csv format)',
+    )

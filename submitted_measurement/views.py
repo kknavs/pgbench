@@ -1,16 +1,22 @@
-from submitted_measurement.models \
-    import SubmittedMeasurement, SubmittedMeasurementForm, Fields, FieldsForm
+import os
+from submitted_measurement.models import *
 from django.shortcuts import render
 from django import http
 from django.contrib import messages
+from submitted_measurement import insertData
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 
 def contact(request):
     model_form = SubmittedMeasurementForm
     model_formF = FieldsForm
+    upload_form = UploadForm
     if request.user.is_authenticated and request.method == 'POST':
         form = model_form(request.POST)
         formF = model_formF(request.POST)
+        upload = UploadForm(request.POST, request.FILES)
         if form.is_valid() and formF.is_valid():
             title = form.cleaned_data.get('title')
             date = form.cleaned_data['date']
@@ -36,12 +42,25 @@ def contact(request):
                 ff.save()
             messages.add_message(request, messages.INFO, "Successful!")
             return http.HttpResponseRedirect('')
+        elif upload.is_valid():
+            data = request.FILES['upload']
+            name = data.name
+            if name.split(".")[1].lower() == "csv":
+                path = default_storage.save('temp/'+name, ContentFile(data.read()))
+                path = settings.MEDIA_ROOT+path
+                if insertData.test(path):
+                    messages.add_message(request, messages.INFO, "Successful!")
+                    os.remove(path)
+            else:
+                messages.add_message(request, messages.INFO, "Wrong file format")
+            return http.HttpResponseRedirect('')
     else:
         form = model_form()
         formF = model_formF()
+        upload = upload_form()
 
     return render(request, 'submit.html', {
-        'form': form, 'fieldsForm': formF,
+        'form': form, 'fieldsForm': formF, 'uploadForm': upload
     })
 
 
